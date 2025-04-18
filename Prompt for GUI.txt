@@ -112,3 +112,13 @@ If you have any missing information ask me dont assume
 
 Add the functionality to save the structure in txt format in pc and provide an option to load the structre. 
 The saved structure must contain the infomration of Node, Member and Load
+
+Create a navigation to all pages
+Model
+--Nodes
+--Members
+Analysis
+--FirstOrderAnalysis
+--Second Order Analysis
+--Comparison
+--Dynamic Analysis
