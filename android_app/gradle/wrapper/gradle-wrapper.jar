@@ -1,0 +1,7 @@
+This is a placeholder file. The actual gradle-wrapper.jar will be downloaded by the build script.
+
+Please run one of the following scripts:
+- build_apk_windows.bat (for Windows)
+- build_apk_linux.sh (for Linux/macOS)
+
+These scripts will automatically download the needed Gradle wrapper JAR file. 
