@@ -1,0 +1,3 @@
+@echo off
+echo Starting Structural Analysis Application...
+streamlit run 0_Introduction.py 

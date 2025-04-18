@@ -1,0 +1,114 @@
+I want to create a structural Analysis app like sofistik. i have the backend of the code. I want you help with front end. Backend is Python. You decide on front end
+
+1. Criteria to consider for front end with weightage
+Fluency and graphics - 50%
+As I am from python, easy understandable for me - 20%
+easy deployment and conversion to apk - 30%
+
+How the App should be structured
+
+0.0 Introduction page
+
+1. Model
+1.1. Page for Node Input
+1.2. Page for Member Input
+1.3. Page for Load Input
+
+All these pages must contain visualisation of the structure
+
+2. Analysis
+2.1 Member Analysis
+2.2 Node Analysis
+
+we will build each page separately, during which I will give the instructions for each page. 
+if you dont know anything dont assume. ask me
+
+0.0 - Introduces the app. Navigation page 1 and 2. 
+
+
+Page1 - Model
+
+#user should be able to navigate between 1.1, 1.2 and 1.3 by swiping left and right. 
+
+now, i will give file StructuralElements.py
+
+Here there will be class Node and Class Member. 
+Get the input from user and create classes of Nodes and Members. user inputs are the initialization of class Node and class Member, respectively. 
+
+Its is 2d App
+For nodes, x coordinate, y coordinate and support condition(this must be obtained from class 'Node' - from line 12 to line 42) as a drop down list. Created node points should be listed below in the same page. if I click the that, I should be able to edit
+
+In Member input, it must have a dropdown list based on nodes created in Node page as an integer. other member properties are Default member property values A =0.09, E=200000000, I=0.083 should automatically be present. Created members should be listed below in the same page. if I click the that, I should be able to edit
+#Member ID and Node ID in Node page and Member page should not be able to change by the user.
+
+For Loads refer load.py under the class Neuman BC. Under Newman BC two loads, Point Load and UDL will be there. The first type of load should be obtained as a drop-down list from the user, then the magnitude of the load. If it is point load only distance 1 is required. If it is UDL distance and 2 is required. 
+
+At the bottom of these pages visualization of the structure should be present
+if you have any information missing dont assume. ask me
+
+
+Page 2 - Analysis
+
+#user should be able to navigate between 2.1, 2.2 by swiping left and right. 
+
+I have provided you with FirstOrderResponse file. In this there will 3 clases. 
+
+1. FirstOrderGlobalResponse
+2. FirstOrderMemberResponse
+3. FirstOrderNodalResponse
+
+There will be functions defined within the class. These function names should be named as a button. 
+on Clicking the button the function should run and output the return value. If no output, 
+( if The function name starts with 'plot'), then it must plot the graph coming out from the function
+
+
+Example: To run a function to plotMemberBMD
+
+Points = [
+Node(Node_Number=1, xcoordinate=0, ycoordinate=0, Support_Condition="Fixed Support"),
+]
+
+
+Members = [
+Member(Beam_Number=3, Start_Node=Points[0], End_Node=Points[1], Area=0.09, Youngs_Modulus=200000000, Moment_of_Inertia=0.000675),
+] # square cross section - 0.3 x 0.3, units N, m
+
+
+Loads = [
+NeumanBC(type="PL", Magnitude=-10000, Distance1= 2.5, AssignedTo="Member 1", Members = Members)
+] 
+MemberRes1 = FirstOrderMemberResponse(Points = Points, Members = Members, Loads = Loads)
+MemberRes1.PlotMemberBMD(2)
+
+this is how PlotMemberBMD is runned. Like this all buttons should ececute a function and show result. Note: For comleplete problem example refer @Input.py
+if you have any information missing dont assume. ask me
+
+#All the scale factors in FIrstOrderAnalysis, SecondOderAnalysis, Dynamic Analysis and Comparision should be a non integer slider , with starting from zero to dynamically varying maximum value
+
+In the First Page bottom
+Now Add a slider Number of Finite elements. This slider is the input for Line 42 in @Input.py
+
+
+Points, Members, Loads = divide_into_finite_elements(Points, Members, Loads, 20)
+divide_into_finite_elements is function in the file FiniteElementDivisor
+Based on this new Points, Members and Loads, Analysis must be carried out
+
+
+
+In @config.py file, self.FEDevision is obtained. By default it is set to 20. in the settings page, give an option to user making this as a slider input 
+and update this with help of get_FEDivision function in config.py. This should there in @load.py file also.
+
+If you have any missing information ask me dont assume
+
+I have provided you file @comparision.py. There will be class Comparision. Just like how added functions returns as buttons in for file FirstOrderResponse
+and SecondOrderResponse. Do for this also. Nma eof the Page Should be Comparision. 
+
+If you have any missing information ask me dont assume
+
+I have provided you file @DynamicResponse.py. There will be class DynamicGlobalResponse. Just like how added functions returns as buttons in for file FirstOrderResponse
+and SecondOrderResponse. Do for this also. Nma eof the Page Should be Comparision. 
+
+If you have any missing information ask me dont assume
+
+Add the functionality to save the structure in txt format in pc and provide an option to load the structre. 
+The saved structure must contain the infomration of Node, Member and Load
